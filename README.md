@@ -1,0 +1,21 @@
+## State
+* Money
+* TruckState
+    * Wait
+    * Departing
+    * Riding
+## Entities
+* Settings
+    * BoxPrice
+    * TruckDelay
+    * DepartureTime
+* Player
+    * MoveBehavior
+    * BoxHandlingBehavior
+    * SendTruckBehavior
+    * KnockOutBehavior
+* Box
+* BoxSpawner
+* Truck
+* ParkingPoint
+* LoadTrigger
