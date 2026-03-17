@@ -13,16 +13,16 @@ namespace Behaviors
 
         public void Pickup()
         {
+            _rigidbody.isKinematic = true;
             _rigidbody.useGravity = false;
-            _rigidbody.angularVelocity = Vector3.zero;
-            _rigidbody.linearVelocity = Vector3.zero;
         }
 
-        public void HoldAt(Transform newTransform)
+        void LateUpdate()
         {
-            _rigidbody.Move(
-                    Vector3.Lerp(transform.position, newTransform.position, 0.9f),
-                    Quaternion.Lerp(transform.rotation, newTransform.rotation, 0.9f));
+            if (!_rigidbody.isKinematic)
+                return;
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
         }
     }
 }

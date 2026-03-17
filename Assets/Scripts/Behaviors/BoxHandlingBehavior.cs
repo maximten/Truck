@@ -29,7 +29,6 @@ namespace Behaviors
         void FixedUpdate()
         {
             HandleRay();
-            HandleBox();
         }
 
         void HandleInteraction(bool value)
@@ -52,15 +51,7 @@ namespace Behaviors
             _hasBox = true;
             _box = raycast.collider.gameObject.GetComponent<BoxBehavior>();
             _box.Pickup();
-        }
-
-        void HandleBox()
-        {
-            if (StageReducer.Current.Stage != Stage.Play)
-                return;
-            if (!_hasBox)
-                return;
-            _box.HoldAt(HoldOrigin);
+            _box.transform.parent = HoldOrigin;
         }
     }
 }
