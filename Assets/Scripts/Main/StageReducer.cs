@@ -9,14 +9,16 @@ namespace Main
     {
         private void Start()
         {
-            Debug.Log("Start");
             AddEnterAction(Stage.Init, () =>
             {
-                Debug.Log("Init");
                 Jobs.Add(() => EmitStageChange(Stage.Play));
             });
             AddEnterAction(Stage.Play, () =>
             {
+                Cursor.visible = false; 
+            });
+            AddExitAction(Stage.Play, () => {
+                Cursor.visible = true;
             });
                 
             EmitStageChange(Stage.Init);

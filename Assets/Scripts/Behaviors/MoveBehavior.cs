@@ -28,7 +28,7 @@ namespace Behaviors
             if (StageReducer.Current.Stage != Stage.Play)
                 return;
 
-            movement *= Speed;
+            movement = transform.TransformDirection(movement) * Speed;
             movement.y = -Global.G;
             movement *= Time.fixedDeltaTime;
             _characterController.Move(movement);

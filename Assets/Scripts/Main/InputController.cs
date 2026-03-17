@@ -8,6 +8,12 @@ namespace Main
     {
         void Update()
         {
+            HandleMove();
+            HandleLook();
+        }
+
+        void HandleMove()
+        {
             var movement = new Vector3();
             
             if (Input.GetKey(KeyCode.W))
@@ -28,6 +34,12 @@ namespace Main
             }
 
             EventEmitterT<InputEvents>.Emit(InputEvents.Move, movement);
+        }
+
+        void HandleLook()
+        {
+            Vector2 mousePos = Input.mousePosition;
+            EventEmitterT<InputEvents>.Emit(InputEvents.Look, mousePos);
         }
     }
 }
