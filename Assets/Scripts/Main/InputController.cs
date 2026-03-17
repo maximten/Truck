@@ -34,6 +34,11 @@ namespace Main
             }
 
             EventEmitterT<InputEvents>.Emit(InputEvents.Move, movement);
+
+            var hasInteraction = Input.GetKey(KeyCode.E);
+
+            EventEmitterT<InputEvents>.Emit(InputEvents.Interact, hasInteraction);
+
         }
 
         void HandleLook()
