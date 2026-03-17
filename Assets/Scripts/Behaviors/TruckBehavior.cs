@@ -14,15 +14,19 @@ namespace Behaviors
         [SerializeField] private Transform ParkingSpot;
         [SerializeField] private Transform UnloadSpot;
 
-        private enum State
+        public enum State
         {
             Wait,
             Closing,
             Riding,
         }
-        private State CurrentState;
-        private List<BoxBehavior> Storage = new ();
+        public State CurrentState;
+        public List<BoxBehavior> Storage = new ();
 
+        public bool HasCapacity()
+        {
+            return Storage.Count < Settings.Current.TruckCapacity;
+        }
 
         public void Put(BoxBehavior box)
         {
@@ -45,6 +49,7 @@ namespace Behaviors
         {
             CurrentState = State.Closing;
             yield return new WaitForSeconds(Settings.Current.ClosingTime);
+            StartCoroutine(DoRiding());
         }
 
         private IEnumerator DoRiding()
@@ -69,6 +74,7 @@ namespace Behaviors
         {
             foreach (var box in Storage)
             {
+                box.transform.parent = null;
                 BoxPool.Current.Release(box);
             }
             Storage.Clear();

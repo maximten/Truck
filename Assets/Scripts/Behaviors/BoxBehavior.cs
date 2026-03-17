@@ -4,6 +4,8 @@ namespace Behaviors
 {
     public class BoxBehavior : MonoBehaviour
     {
+        public bool InTruck = false;
+
         private Rigidbody _rigidbody;
 
         void Awake()
@@ -13,6 +15,8 @@ namespace Behaviors
 
         public void SetAt(Transform transform)
         {
+            _rigidbody.isKinematic = false;
+            _rigidbody.useGravity = true;
             _rigidbody.Move(transform.position, transform.rotation);
         }
 

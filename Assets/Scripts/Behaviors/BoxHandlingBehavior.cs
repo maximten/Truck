@@ -12,8 +12,8 @@ namespace Behaviors
         [SerializeField] private Transform HoldOrigin;
 
         private bool _hasInteraction = false;
-        private bool _hasBox = false;
-        private BoxBehavior _box;
+        public bool HasBox = false;
+        public BoxBehavior Box;
 
         void OnEnable()
         {
@@ -40,7 +40,7 @@ namespace Behaviors
         {
             if (StageReducer.Current.Stage != Stage.Play)
                 return;
-            if (_hasBox)
+            if (HasBox)
                 return;
             if (!Physics.Raycast(RayOrigin.position, RayOrigin.forward, out var raycast, RayLenght))
                 return;
@@ -48,9 +48,11 @@ namespace Behaviors
                 return;
             if (!_hasInteraction)
                 return;
-            _hasBox = true;
-            _box = raycast.collider.gameObject.GetComponent<BoxBehavior>();
-            _box.Pickup(HoldOrigin);
+            Box = raycast.collider.gameObject.GetComponent<BoxBehavior>();
+            if (Box.InTruck)
+                return;
+            HasBox = true;
+            Box.Pickup(HoldOrigin);
         }
     }
 }
