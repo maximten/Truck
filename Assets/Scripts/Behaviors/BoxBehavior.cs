@@ -13,11 +13,13 @@ namespace Behaviors
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void SetAt(Transform transform)
+        public void SetAt(Transform newTransform)
         {
+            transform.position = newTransform.position;
+            transform.rotation = newTransform.rotation;
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
-            _rigidbody.Move(transform.position, transform.rotation);
+            _rigidbody.Move(newTransform.position, newTransform.rotation);
         }
 
         public void Pickup(Transform newParent)
