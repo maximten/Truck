@@ -11,6 +11,11 @@ namespace Behaviors
             _rigidbody = GetComponent<Rigidbody>();
         }
 
+        public void SetAt(Transform transform)
+        {
+            _rigidbody.Move(transform.position, transform.rotation);
+        }
+
         public void Pickup()
         {
             _rigidbody.isKinematic = true;
