@@ -15,6 +15,7 @@ namespace Main
             });
             AddEnterAction(Stage.Play, () =>
             {
+                UIController.Current.Render(UIName.Play);
                 Cursor.visible = false; 
             });
             AddExitAction(Stage.Play, () => {

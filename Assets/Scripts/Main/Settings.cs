@@ -11,6 +11,7 @@ namespace Main
         public int TruckCapacity;
         public float ClosingTime;
         public float RidingTime;
+        public int MoneyForBox;
 
         void Awake()
         {

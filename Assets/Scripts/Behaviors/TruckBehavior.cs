@@ -38,6 +38,7 @@ namespace Behaviors
             if (Storage.Count >= Settings.Current.TruckCapacity)
                 return;
             Storage.Add(box);
+            MainState.Current.SetInt(MainField.BoxesInTruck, Storage.Count);
             box.Pickup(StorageOrigin);
         }
 
@@ -80,12 +81,16 @@ namespace Behaviors
 
         void Unload()
         {
+            var moneyDiff = Storage.Count * Settings.Current.MoneyForBox;
             foreach (var box in Storage)
             {
                 box.transform.parent = null;
                 BoxPool.Current.Release(box);
             }
             Storage.Clear();
+            var currentMoney = MainState.Current.GetInt(MainField.Money);
+            MainState.Current.SetInt(MainField.BoxesInTruck, Storage.Count);
+            MainState.Current.SetInt(MainField.Money, currentMoney + moneyDiff);
         }
     }
 }

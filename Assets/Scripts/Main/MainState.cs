@@ -12,7 +12,8 @@ namespace Main
         {
             Current = this;
 
-            RegisterInt(MainField.Money);
+            RegisterInt(MainField.Money, 0);
+            RegisterInt(MainField.BoxesInTruck, 0);
         }
     }
 }

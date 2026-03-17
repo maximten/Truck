@@ -1,7 +1,8 @@
 namespace Types
 {
-    public class UIName
+    public enum UIName
     {
-        
+        Loading,
+        Play
     }
 }

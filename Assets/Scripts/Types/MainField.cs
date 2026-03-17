@@ -2,6 +2,7 @@ namespace Types
 {
     public enum MainField
     {
-        Money
+        Money,
+        BoxesInTruck
     }
 }
