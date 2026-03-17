@@ -23,7 +23,7 @@ namespace Pools
                     var behavior = obj.GetComponent<BoxBehavior>();
                     return behavior;
                 },
-                actionOnGet: obj => obj.gameObject.SetActive(true),
+                actionOnGet: obj => obj.gameObject.SetActive(false),
                 actionOnRelease: obj => obj.gameObject.SetActive(false),
                 actionOnDestroy: obj => Destroy(obj.gameObject),
                 defaultCapacity: DefaultCapacity,

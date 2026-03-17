@@ -50,6 +50,7 @@ namespace Behaviors
                 return;
             var box = BoxPool.Current.Get();
             box.SetAt(SpawnOrigin);
+            box.gameObject.SetActive(true);
             _currentSpawnDelay = SpawnDelay;
         }
     }

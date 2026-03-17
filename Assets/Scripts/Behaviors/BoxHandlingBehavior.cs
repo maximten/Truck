@@ -50,8 +50,7 @@ namespace Behaviors
                 return;
             _hasBox = true;
             _box = raycast.collider.gameObject.GetComponent<BoxBehavior>();
-            _box.Pickup();
-            _box.transform.parent = HoldOrigin;
+            _box.Pickup(HoldOrigin);
         }
     }
 }

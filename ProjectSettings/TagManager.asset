@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Box
+  - LoadZone
+  - Truck
   layers:
   - Default
   - TransparentFX

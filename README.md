@@ -19,3 +19,16 @@
 * Truck
 * ParkingPoint
 * LoadTrigger
+
+* LoadingBehavior
+    * InLoadingZone
+* SendTruckBehavior
+    * InLoadingZone
+* LoadingZoneBehavior
+    * ParkingZone
+* ParkingZoneBehavior
+    * HasTruck
+* Truck
+    * TruckState State
+    * List<Box> Storage
+    * HandleState

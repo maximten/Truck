@@ -16,10 +16,11 @@ namespace Behaviors
             _rigidbody.Move(transform.position, transform.rotation);
         }
 
-        public void Pickup()
+        public void Pickup(Transform newParent)
         {
             _rigidbody.isKinematic = true;
             _rigidbody.useGravity = false;
+            transform.parent = newParent;
         }
 
         void LateUpdate()
