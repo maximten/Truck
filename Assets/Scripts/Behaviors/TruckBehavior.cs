@@ -10,6 +10,9 @@ namespace Behaviors
 {
     public class TruckBehavior: MonoBehaviour
     {
+        [SerializeField] private GameObject Lid;
+        [SerializeField] private Vector3 LidOpened;
+        [SerializeField] private Vector3 LidClosed;
         [SerializeField] private Transform StorageOrigin;
         [SerializeField] private Transform ParkingSpot;
         [SerializeField] private Transform UnloadSpot;
@@ -48,7 +51,11 @@ namespace Behaviors
         private IEnumerator DoClosing()
         {
             CurrentState = State.Closing;
-            yield return new WaitForSeconds(Settings.Current.ClosingTime);
+            yield return Coroutines.TimerAction(t => {
+                Lid.transform.localPosition = Vector3.Lerp(LidOpened, LidClosed, t);
+            }, Settings.Current.ClosingTime, 0, () => {
+                Lid.transform.localPosition = LidClosed;
+            });
             StartCoroutine(DoRiding());
         }
 
@@ -66,6 +73,7 @@ namespace Behaviors
                 transform.position = Vector3.Lerp(UnloadSpot.transform.position, ParkingSpot.transform.position, t);
             }, halfRidingTime, 0, () => {
                 transform.position = ParkingSpot.transform.position;
+                Lid.transform.localPosition = LidOpened;
                 CurrentState = State.Wait;
             });
         }
